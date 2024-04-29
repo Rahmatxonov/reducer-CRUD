@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "id": "f426",
+      "firstName": "Xasanxon",
+      "lastName": "Rahmatxonov",
+      "age": "26",
+      "job": "developer"
+    },
+    {
+      "id": "1708",
+      "firstName": "Hasanxon",
+      "lastName": "Jorayev",
+      "age": "15",
+      "job": "maktab "
+    }
+  ]
+}
