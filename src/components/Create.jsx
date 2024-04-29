@@ -1,13 +1,11 @@
 import React, { useReducer, useRef } from "react";
 import instance from "../api/Axios";
 import { useNavigate } from "react-router-dom";
-
-const reducer = () => {};
-const initialState = [];
+import { initialState, reducer } from "../reducer";
+import { CREATE } from "../reducer/types";
 
 const Create = () => {
-  const [user, dispatch] = useReducer(reducer, initialState);
-
+  const [state, dispatch] = useReducer(reducer, initialState);
   const firstRef = useRef();
   const lastRef = useRef();
   const ageRef = useRef();
@@ -16,15 +14,18 @@ const Create = () => {
 
   const handaleSubmit = (e) => {
     e.preventDefault();
+    e.target.reset();
     const data = {
       firstName: firstRef.current.value,
       lastName: lastRef.current.value,
       age: ageRef.current.value,
       job: jobRef.current.value,
     };
+
     instance()
       .post("/users/", data)
-      .then((resonse) => {
+      .then((response) => {
+        dispatch({ type: CREATE, payload: response.data });
         setTimeout(() => {
           navigate("/");
         }, 1000);

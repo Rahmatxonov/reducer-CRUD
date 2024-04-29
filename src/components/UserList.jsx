@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [deleted, setDeleted] = useState(false);
+
   useEffect(() => {
     instance()
       .get("/users")
       .then((res) => {
         setUsers(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-  }, []);
+  }, [deleted]);
 
   const deleteItem = (userId) => {
     instance()
@@ -38,8 +42,8 @@ const UserList = () => {
               >
                 <span>Ism: {firstName}</span>
                 <span> Familiya: {lastName}</span>
-                <span>Yoshi: {age}</span>
-                <span>Ishi: {job}</span>
+                <span>Yosh: {age}</span>
+                <span>ISh: {job}</span>
                 <span className="space-x-3">
                   <Link to={`/update/${id}`}>
                     <button className="bg-green-500 duration-[0.3s] p-2 rounded-md hover:bg-green-600 pointer ">
@@ -51,7 +55,7 @@ const UserList = () => {
                     onClick={() => deleteItem(id)}
                     className="bg-red-500 p-2 mt-3 text-white rounded-md hover:bg-red-600 pointer"
                   >
-                    Delete
+                    delete
                   </button>
                 </span>
               </li>
