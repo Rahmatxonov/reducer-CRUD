@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import instance from "../api/Axios";
 import { Link } from "react-router-dom";
 
@@ -34,6 +34,7 @@ const UserList = () => {
       <ul className="userlist relative flex flex-wrap ms-[80px]">
         {users.length > 0 &&
           users.map((item) => {
+            console.log(item);
             const { id, firstName, lastName, age, job } = item;
             return (
               <li
@@ -72,4 +73,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default memo(UserList);
